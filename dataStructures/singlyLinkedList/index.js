@@ -3,7 +3,7 @@ function Node(value, next = null) {
   this.next = next;
 }
 
-Node.prototype.print = function() {
+Node.prototype.print = function () {
   console.log(`[value]: ${this.value} [next]: ${JSON.stringify(this.next)}`);
 
   if (this.next) {
@@ -11,7 +11,7 @@ Node.prototype.print = function() {
   }
 
   console.log('\n');
-}
+};
 
 function LinkedList(data, next) {
   if (data === null || data === undefined) {
@@ -23,46 +23,46 @@ function LinkedList(data, next) {
   }
 }
 
-LinkedList.prototype.prepend = function(data) {
-  return this.head = new Node(data, this.head);
-}
+LinkedList.prototype.prepend = function (data) {
+  return (this.head = new Node(data, this.head));
+};
 
-LinkedList.prototype.append = function(data, next) {
+LinkedList.prototype.append = function (data, next) {
   if (this.tail === null) {
     this.head = new Node(data, next);
-    return this.tail = this.head;
+    return (this.tail = this.head);
   }
 
   this.tail.next = new Node(data);
-  return this.tail = this.tail.next;
-}
+  return (this.tail = this.tail.next);
+};
 
-LinkedList.prototype.addAfter = function(previousNode, data) {
+LinkedList.prototype.addAfter = function (previousNode, data) {
   if (!(previousNode instanceof Node)) {
     throw new Error('previousNode must be instance of Node');
   }
 
   const { next } = previousNode;
   if (next === null) {
-    return this.append(data)
+    return this.append(data);
   }
 
-  return previousNode.next = new Node(data, next);
-}
+  return (previousNode.next = new Node(data, next));
+};
 
-LinkedList.prototype.removeFirst = function() {
+LinkedList.prototype.removeFirst = function () {
   if (this.head === null) {
     return;
   }
 
   if (this.head === this.tail) {
-    return this.head = this.tail = null;
+    return (this.head = this.tail = null);
   }
 
-  return this.head = this.head.next;
-}
+  return (this.head = this.head.next);
+};
 
-LinkedList.prototype.remove = function(value) {
+LinkedList.prototype.remove = function (value) {
   if (this.head === null) {
     return;
   }
@@ -76,14 +76,14 @@ LinkedList.prototype.remove = function(value) {
 
   while (currentNode) {
     if (currentNode.value === value) {
-      return previousNode.next = currentNode.next;
+      return (previousNode.next = currentNode.next);
     }
 
     previousNode = currentNode;
     currentNode = currentNode.next;
   }
-}
+};
 
-LinkedList.prototype.print = function() {
+LinkedList.prototype.print = function () {
   this.head.print();
-}
+};
